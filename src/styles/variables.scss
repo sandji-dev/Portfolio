@@ -1,0 +1,25 @@
+// Dans styles/_variables.scss ou en haut de main.scss
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin mobile { @media (max-width: #{$mobile}) { @content; } }
+@mixin tablet { @media (max-width: #{$tablet}) { @content; } }
+
+
+// Couleurs Dark Tech 
+$bg-dark: #0f172a;        // Fond principal (Bleu nuit)
+$bg-card: #1e293b;        // Fond des cartes (un peu plus clair)
+$text-main: #f8fafc;      // Texte blanc cassé
+$text-secondary: #94a3b8; // Texte gris pour les descriptions
+$accent: #22d3ee;         // Cyan électrique pour les boutons/hover
+$accent-soft: rgba(34, 211, 238, 0.1);
+
+// Fonts
+$font-main: 'Inter', sans-serif;
+// Dans ton fichier _variables.scss, ajoute par exemple :
+$font-primary: 'Inter', sans-serif;
+$font-secondary: 'Montserrat', sans-serif; // Ou la police de ton choix
+$font-logo: 'Playfair Display', serif; // Très élégant, style magazine de luxe
+// OU
+$font-logo-alt: 'Syncopate', sans-serif; // Très moderne, futuriste, large

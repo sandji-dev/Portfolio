@@ -1,0 +1,57 @@
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-dark;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  line-height: 1.6; // Améliore la lisibilité sur petit écran
+}
+
+// CONTENEUR GLOBAL RÉACTIF
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include mobile {
+    padding: 0 15px; // Moins de marge sur petit téléphone
+  }
+}
+
+// TYPOGRAPHIE RESPONSIVE
+h1, .section-title {
+  font-size: clamp(2rem, 8vw, 3.5rem); // Taille fluide (min, variable, max)
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+// GRILLE DE PROJETS ( ProjectCards)
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+
+  @include mobile {
+    grid-template-columns: 1fr; // Une seule colonne sur mobile
+    gap: 20px;
+  }
+}
+
+// FORMULAIRE DE CONTACT RESPONSIVE
+.contact-content {
+  display: flex;
+  gap: 40px;
+
+  @include tablet {
+    flex-direction: column; //  empilement les infos et le formulaire
+    gap: 30px;
+  }
+}

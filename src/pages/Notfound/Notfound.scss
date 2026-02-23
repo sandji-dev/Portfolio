@@ -1,0 +1,42 @@
+@use '../../styles/variables' as *;
+
+.notfound {
+  height: 80vh; // Pour bien centrer verticalement entre le header et le footer
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+
+  &-code {
+    font-size: clamp(6rem, 15vw, 10rem); //  404 bien visible
+    font-weight: 900;
+    color: $accent;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 10px 30px rgba($accent, 0.3);
+  }
+
+  &-text {
+    font-size: 1.5rem;
+    color: white;
+    margin: 20px 0 40px;
+    max-width: 500px;
+  }
+
+  &-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 2px solid $accent;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $accent;
+      border-bottom-color: transparent;
+      transform: translateY(-3px);
+    }
+  }
+}

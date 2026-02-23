@@ -1,0 +1,80 @@
+@use '../../styles/variables' as *;
+
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+  -webkit-backdrop-filter: blur(12px); // Pour Safari
+  backdrop-filter: blur(12px);         // Pour les autres (Chrome, Edge, Firefox)
+  background: rgba($bg-dark, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  &-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $accent;
+    text-decoration: none;
+  }
+
+  &-nav {
+    display: flex;
+    gap: 30px;
+
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative; // Nécessaire pour le petit trait en dessous
+      padding: 5px 0;
+
+      //  Couleur quand le lien est actif ou survolé
+      &:hover, &.active {
+        color: $accent;
+      }
+
+      //  Un petit trait qui apparaît sous le lien actif
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $accent;
+        transition: width 0.3s ease;
+      }
+
+      &.active::after {
+        width: 100%; // Le trait prend toute la largeur quand on est sur la page
+      }
+    }
+  }
+}
+
+.header-logo {
+  a {
+    font-family: $font-logo; // La police du logo
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -1px; // On resserre un peu pour le style
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+
+    span {
+      color: $accent; // Le ".S" ou le ".Dev" en bleu
+      font-style: italic; 
+    }
+
+    &:hover {
+      transform: scale(1.05) rotate(-2deg); // Petit effet dynamique au survol
+    }
+  }
+}

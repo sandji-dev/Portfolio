@@ -1,0 +1,65 @@
+@use '../../styles/variables' as *;
+
+.skills {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  &-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: white;
+    font-family: $font-secondary; // police de titre
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .skill-icon {
+    font-size: 2.5rem; // Taille de l'icône
+    margin-bottom: 15px;
+    color: white; // Couleur par défaut
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    .skill-icon {
+      transform: scale(1.2); // L'icône grossit un peu au survol
+    }
+  }
+  // --- Mise à jour des couleurs pour les icônes aussi ---
+  
+  // Front-end (Bleu)
+  &[data-category="Front-end"] {
+    &:hover .skill-icon { color: $accent; }
+  }
+
+  // Back-end (Vert)
+  &[data-category="Back-end"],
+  &[data-category="Base de données"] {
+    &:hover .skill-icon { color: #10b981; }
+  }
+
+  // Outils (Orange)
+  &[data-category="Workflow"],
+  &[data-category="Outils"] {
+    &:hover .skill-icon { color: #f59e0b; }
+  }
+}

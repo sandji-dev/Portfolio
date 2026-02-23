@@ -1,0 +1,240 @@
+@use '../../styles/variables' as *;
+
+.contact-page {
+  padding: 100px 5%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-dark; // fond sombre
+}
+
+.contact-container {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.contact-title {
+  font-size: clamp(2rem, 5vw, 3.5rem); // Responsive title
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.contact-subtitle {
+  color: $text-secondary;
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; // Formulaire plus large que les infos
+  gap: 40px;
+  align-items: start;
+}
+
+// Colonne gauche :  cartes
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row; // Format horizontal pour la colonne
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+
+  .contact-icon {
+    font-size: 1.8rem;
+    color: $accent;
+  }
+
+  h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    transform: translateX(10px); // Animation latérale
+    background: rgba($accent, 0.05);
+    border-color: $accent;
+  }
+
+  &.highlight {
+    border: 1px dashed $accent;
+  }
+}
+
+// Colonne droite : Le Formulaire
+.contact-form-container {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+
+  .form-group {
+    margin-bottom: 25px;
+    text-align: left;
+
+    label {
+      display: block;
+      color: white;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-family: inherit;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $accent;
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: $accent;
+    color: $bg-dark; // Texte foncé sur bouton clair
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+      box-shadow: 0 10px 20px rgba($accent, 0.2);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 850px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  .contact-info {
+    order: 2; // Formulaire en premier sur mobile
+  }
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: white;
+  height: 100%;
+
+  svg {
+    font-size: 4rem;
+    color: #4bb543; // Un beau vert succès
+    margin-bottom: 20px;
+  }
+
+  h3 { font-size: 1.8rem; margin-bottom: 10px; }
+  p { color: $text-secondary; }
+}
+
+// État désactivé du bouton pendant l'envoi
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.contact-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+
+  // PASSAGE EN COLONNE SUR MOBILE
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    // FORCE LA LARGEUR TOTALE
+    @media (max-width: 768px) {
+      width: 100%; 
+    }
+
+    .contact-card {
+      width: 100%; // La carte prend tout l'espace disponible
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      // Évite que le contenu soit écrasé
+      min-height: 80px; 
+
+      .contact-icon {
+        font-size: 1.5rem;
+        margin-right: 20px;
+        color: $accent;
+        flex-shrink: 0; // empécher L'icône de rétrécir
+      }
+
+      div {
+        h3 {
+          font-size: 1.1rem;
+          color: white;
+          margin-bottom: 2px;
+        }
+        p {
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
+          word-break: break-all; // Évite que l'email dépasse sur petit écran
+        }
+      }
+    }
+  }
+
+  .contact-form-container {
+    flex: 2;
+    width: 100%; // Toujours 100% sur mobile
+  }
+}
