@@ -4,7 +4,7 @@
         "title": "Booki",
         "category": "HTML/CSS",
         "description": "Transformation d'une maquette Figma en site web responsive.",
-        "image": "/images/booki.webp",
+        "image": "images/booki.webp",
         "technos": ["HTML", "CSS"],
         "github": "https://github.com/sandji-dev/booki-projet",
         "demo": "https://sandji-dev.github.io/booki-projet/"
@@ -14,7 +14,7 @@
         "title": "Kasa",
         "category": "React",
         "description": "Application de location immobilière avec React et React Router.",
-        "image": "/images/kasa.webp",
+        "image": "images/kasa.webp",
         "technos": ["React", "Sass"],
         "github": "https://github.com/sandji-dev/Kasa",
         "demo": "https://sandji-dev.github.io/Kasa/"
@@ -24,7 +24,7 @@
         "title": "Sophie Bluel",
         "category": "JavaScript",
         "description": "Création d'une page web dynamique avec une galerie de photos gérée par API.",
-        "image": "/images/sophie-bluel.webp",
+        "image": "images/sophie-bluel.webp",
         "technos": ["JavaScript", "Fetch API"],
         "github": "https://github.com/sandji-dev/Sophie-Bruel-OPC",
         "demo": "https://sandji-dev.github.io/Sophie-Bruel-OPC/"
@@ -34,7 +34,7 @@
         "title": "Nina Carducci",
         "category": "Optimisation SEO",
         "description": "Optimisation des performances et du SEO d'un site de photographe.",
-        "image": "/images/nina-carducci.webp",
+        "image": "images/nina-carducci.webp",
         "technos": ["SEO", "Lighthouse", "Performance"],
         "github": "https://github.com/sandji-dev/OPC_4-Nina-Carducci",
         "demo": "https://sandji-dev.github.io/OPC_4-Nina-Carducci/"
@@ -44,7 +44,7 @@
         "title": "Mon Vieux Grimoire",
         "category": "Back-End",
         "description": "Développement du back-end d'un site de notation de livres : création d'API, gestion de base de données MongoDB et authentification sécurisée.",
-        "image": "/images/vieux-grimoire.webp",
+        "image": "images/vieux-grimoire.webp",
         "technos": ["Node.js", "Express", "MongoDB"],
         "github": "https://github.com/sandji-dev/OP6-Mon-Vieux-Grimoire-Backend",
         "demo": ""
