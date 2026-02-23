@@ -5,7 +5,7 @@ export default defineConfig(({ command }) => {
   return {
     plugins: [react()],
     // Si on lance 'npm run dev', la base est '/', sinon c'est '/portfolio/'
-    base: command === 'serve' ? '/' : '/portfolio/',
+    base: command === 'serve' ? '/' : '/Portfolio/',
     build: {
       rollupOptions: {
         output: {
