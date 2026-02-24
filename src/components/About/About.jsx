@@ -7,7 +7,11 @@ const About = () => {
         <div className="about-image">
           
           <div className="image-placeholder">
-            <img src="/images/ricardo-profile .webp" alt=" photo de Ricardo Sandjon" />
+          <img 
+            src={`${import.meta.env.BASE_URL}images/ricardo-profile.webp`} 
+            alt="Portrait de Ricardo Sandjon" 
+          />
+
           </div>
         </div>
         

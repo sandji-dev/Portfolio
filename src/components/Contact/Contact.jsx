@@ -14,10 +14,10 @@ const Contact = () => {
     setLoading(true);
 
     emailjs.sendForm(
-      'service_e0xengm', 
-      'template_sov5fwt', 
+      import.meta.env.VITE_EMAILJS_SERVICE_ID, 
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
       form.current, 
-      'rHyBaYPtQq7IF-pL4'
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
         setIsSent(true);
@@ -25,7 +25,7 @@ const Contact = () => {
         form.current.reset();
         setTimeout(() => setIsSent(false), 6000);
     }, (error) => {
-        console.error(error.text);
+        console.error("Erreur EmailJS:", error.text);
         setLoading(false);
         alert("Une erreur est survenue, essayez de me contacter via LinkedIn.");
     });
