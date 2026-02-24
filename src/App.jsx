@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Projects from './pages/Projects/Projects';
 import NotFound from './pages/Notfound/Notfound';
@@ -8,7 +8,7 @@ import Contact from './components/Contact/Contact';
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router>
       <Header />
       <main>
         <Routes>
