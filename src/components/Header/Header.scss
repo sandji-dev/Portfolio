@@ -20,6 +20,15 @@
     color: $accent;
     text-decoration: none;
   }
+  &-burger {
+    display: none; // Caché sur PC
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1100;
+  }
 
   &-nav {
     display: flex;
@@ -75,6 +84,41 @@
 
     &:hover {
       transform: scale(1.05) rotate(-2deg); // Petit effet dynamique au survol
+    }
+  }
+}
+
+// --- VERSION MOBILE (Sortie de .header pour éviter l'erreur de compilation) ---
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+
+    &-burger {
+      display: block; // On l'affiche sur mobile
+    }
+
+    &-nav {
+      position: fixed;
+      top: 0;
+      right: -100%; // Menu caché à droite
+      width: 75%;
+      height: 100vh;
+      background: rgba($bg-dark, 0.98);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      transition: right 0.4s ease-in-out;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+
+      &.open {
+        right: 0; // On fait glisser le menu
+      }
+
+      a {
+        font-size: 1.4rem;
+        &::after { display: none; } // On enlève le trait sur mobile pour simplifier
+      }
     }
   }
 }

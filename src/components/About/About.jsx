@@ -18,7 +18,7 @@ const About = () => {
         <div className="about-text">
           <h2 className="section-title">À propos de moi</h2>
           <p>
-            Passionné par la création numérique, je suis un <strong>Développeur Web Fullstack</strong> 
+            Passionné par la création numérique, je suis un <strong>Développeur Web Fullstack </strong> 
             basé en ITALIE. Mon objectif est de transformer des idées complexes en 
             expériences numériques fluides et élégantes.
           </p>

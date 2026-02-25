@@ -4,15 +4,27 @@ import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { FaEnvelope, FaLinkedin, FaFileDownload, FaCheckCircle, FaPaperPlane } from 'react-icons/fa';
 import './Contact.scss';
 
+/**
+ * Composant Contact : Gère l'affichage des informations de contact
+ * et l'envoi de formulaire via le service externe EmailJS.
+ */
 const Contact = () => {
+  // useRef pour accéder directement au nœud du formulaire dans le DOM sans déclencher de re-renders inutiles
   const form = useRef();
+
+  // États pour gérer le cycle de vie de l'envoi (feedback utilisateur)
   const [isSent, setIsSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Fonction de traitement de l'envoi de l'email
+   * Utilise les variables d'environnement pour la sécurité des identifiants
+   */
   const sendEmail = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Empêche le rechargement de la page par défaut
     setLoading(true);
 
+    // Intégration de la SDK EmailJS avec protection des clés API via Vite (import.meta.env)
     emailjs.sendForm(
       import.meta.env.VITE_EMAILJS_SERVICE_ID, 
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
@@ -20,9 +32,10 @@ const Contact = () => {
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
-        setIsSent(true);
+        setIsSent(true); // Affiche le message de succès
         setLoading(false);
-        form.current.reset();
+        form.current.reset(); // Vide les champs du formulaire
+        // Masque le message de succès automatiquement après 6 secondes
         setTimeout(() => setIsSent(false), 6000);
     }, (error) => {
         console.error("Erreur EmailJS:", error.text);
@@ -34,23 +47,25 @@ const Contact = () => {
   return (
     <section className="contact-page">
       <div className="contact-container">
+        {/* Animation d'entrée progressive (Reveal effect) au scroll */}
         <Motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true }} // L'animation ne se joue qu'une fois
         >
           <Motion.h1 className="contact-title">Parlons de votre projet</Motion.h1>
           <p className="contact-subtitle">Remplissez le formulaire ou contactez-moi directement.</p>
         </Motion.div>
 
         <div className="contact-content">
+          {/* Section Informations : Accessibilité (Aria-labels) et SEO (Rel attributes) optimisés */}
           <div className="contact-info">
             <Motion.a 
               whileHover={{ x: 10 }}
               href="mailto:sandjon.ricky@gmail.com" 
               className="contact-card"
-              aria-label="Envoyer un email à Ricardo Sandjon" // Ajouté pour Lighthouse
+              aria-label="Envoyer un email à Ricardo Sandjon"
             >
               <FaEnvelope className="contact-icon" aria-hidden="true" />
               <div>
@@ -63,9 +78,9 @@ const Contact = () => {
               whileHover={{ x: 10 }}
               href="https://linkedin.com" 
               target="_blank" 
-              rel="noopener noreferrer" // Sécurité + SEO
+              rel="noopener noreferrer" // Sécurité contre le tab-nabbing et boost SEO
               className="contact-card"
-              aria-label="Visiter mon profil LinkedIn" //  Lighthouse
+              aria-label="Visiter mon profil LinkedIn"
             >
               <FaLinkedin className="contact-icon" aria-hidden="true" />
               <div>
@@ -76,10 +91,10 @@ const Contact = () => {
 
             <Motion.a 
               whileHover={{ x: 10 }}
-              href="/cv-ricardo.pdf" 
-              download 
+              href={`${import.meta.env.BASE_URL}cv-sandjon-ricardo.pdf`} 
+              download="cv-sandjon-ricardo.pdf"
               className="contact-card highlight"
-              aria-label="Télécharger mon CV au format PDF" //pour Lighthouse
+              aria-label="Télécharger mon CV au format PDF"
             >
               <FaFileDownload className="contact-icon" aria-hidden="true" />
               <div>
@@ -95,10 +110,11 @@ const Contact = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
+            {/* AnimatePresence gère les transitions de sortie proprement lors du switch formulaire/succès */}
             <AnimatePresence mode="wait">
               {isSent ? (
                 <Motion.div 
-                  role="alert" // Indique aux technologies d'assistance un changement d'état
+                  role="alert" // Attribut ARIA pour informer les lecteurs d'écran du succès
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
@@ -110,6 +126,7 @@ const Contact = () => {
                 </Motion.div>
               ) : (
                 <form ref={form} onSubmit={sendEmail} className="contact-form">
+                  {/* Utilisation de labels liés par ID pour l'accessibilité RGAA */}
                   <div className="form-group">
                     <label htmlFor="user_name">Nom complet</label>
                     <input type="text" id="user_name" name="user_name" placeholder="Ex: Jean Dupont" required />
@@ -130,13 +147,14 @@ const Contact = () => {
                     <textarea id="message" name="message" rows="5" placeholder="Votre message ici..." required></textarea>
                   </div>
 
+                  {/* Gestion de l'état "Loading" pour éviter les doubles envois (UX) */}
                   <Motion.button 
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit" 
                     className="btn-submit" 
                     disabled={loading}
-                    aria-busy={loading} // Indique que le bouton travaille
+                    aria-busy={loading}
                   >
                     {loading ? "Envoi..." : <>Envoyer <FaPaperPlane style={{marginLeft: '10px'}} aria-hidden="true"/></>}
                   </Motion.button>
